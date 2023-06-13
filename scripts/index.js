@@ -109,4 +109,3 @@ buttonRef.addEventListener("click", function(event) {
     event.preventDefault();
     sentButton();
   });
-  
