@@ -19,4 +19,32 @@ const buttonFormRef = document.querySelector("#buttonForm")
 
 
 
+//coferir se os input estao com erro 
+let formaHasError = {
+    name: true,
+    lastName: true,
+    email: true,
+    password: true,
+    passwordRepit: true
+  }
 
+
+
+//deshabilitar botao
+function disabledButtonErro(){
+  
+
+    if(!formaHasError.name && !formaHasError.lastName && !formaHasError.email && !formaHasError.password && !formaHasError.passwordRepit ){
+    
+      botonForm.disabled = false
+       
+    }else{
+    
+      botonForm.disabled = true
+      
+    }
+    
+    
+    
+    
+    }
