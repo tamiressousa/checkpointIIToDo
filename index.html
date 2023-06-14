@@ -11,8 +11,8 @@
   <link rel="stylesheet" href="styles/acesso.css">
 
   <!-- ---------------------- lógica aplicada no login ----------------------- -->
-  <script src="/scripts/utils.js"></script>
-  <script src="/scripts/index.js"></script>
+  <script src="/scripts/utils.js" type="module" defer></script>
+  <script src="/scripts/index.js" type="module" defer></script>
 
 </head>
 
@@ -29,18 +29,29 @@
       <h1>Acessar</h1>
       <label>
         Email:
-        <input id="inputEmail" type="text">
+        <input
+        required
+        minlength="6"  
+        name="inputEmail"
+         id="inputEmail" 
+         type="text">
       </label>
+      <small class="erro_mensagem"></small>
       <label>
         Senha:
-        <input id="inputPassword" type="password">
+        <input 
+        required
+        minlength="8"
+        name="inputPassword"
+        id="inputPassword"
+         type="password">
       </label>
-
-      <button type="submit">Acessar</button>
+      <small class="erro_mensagem"></small>
+      <button type="submit" id="buttonsent">Acessar</button>
 
     </form>
     <div class="ingressar">
-      <a href="signup.html">Não possui conta? Crie agora mesmo</a>
+      <a href="signup.html">Não   possui conta? Crie agora mesmo</a>
     </div>
   </div>
 

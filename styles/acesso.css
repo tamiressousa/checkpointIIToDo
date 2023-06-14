@@ -89,3 +89,19 @@ button {
   align-items: center;
   justify-content: center;
 }
+
+
+
+.right .error{
+
+background-color: rgb(238, 125, 125);
+
+
+}
+
+
+.errorButton{
+
+background-color: rgb(170, 167, 167);
+
+}
