@@ -29,26 +29,51 @@
 
       <label>
         Nome:
-        <input type="text">
+        <input type="text" 
+        name="name"
+        required
+        minlength="4"
+        maxlength="40"
+        id="nameInput"
+        >
       </label>
       <label>
         Sobrenome:
-        <input type="text">
+        <input type="text"
+        name="lastName"
+        required
+        minlength="4"
+        maxlength="60"
+        id="lastNameInput"
+        >
       </label>
       <label>
         Email:
-        <input type="email">
+        <input type="email"
+        name="email"
+        minlength="6"
+        id="emailInput"
+        >
       </label>
       <label>
         Senha:
-        <input type="password">
+        <input type="password"
+        name="password"
+        required
+        minlength="8"
+        id="passwordInput"
+        >
       </label>
       <label>
         Repetir senha:
-        <input type="password">
+        <input type="password"
+        name="passwordRepit"
+        minlength="8"
+        id="passwordRepitInput"
+        >
       </label>
 
-      <button>Criar conta</button>
+      <button id="buttonForm">Criar conta</button>
 
     </form>
     <div class="ingressar">
