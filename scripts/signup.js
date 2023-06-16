@@ -23,6 +23,8 @@ const buttonFormRef = document.querySelector("#buttonForm")
 
 
 
+
+
 //coferir se os input estao com erro 
 let formaHasError = {
     name: true,
@@ -31,17 +33,6 @@ let formaHasError = {
     password: true,
     passwordRepit: true
   }
-
-
-
-// validar senha
-
-function passwordValid(event){
-
-
-
-    
-}
 
 
 /// avaliar os imput
@@ -54,7 +45,7 @@ function validarInput(event){
     if(isValid){
         //adicionar clase de error
             target.classList.remove("error")
-            formaHasError[target.name] = false
+            formaHasError[target.name] = true
             mensagemErro.textContent = ""
 
 
@@ -63,21 +54,22 @@ function validarInput(event){
                
                 if(passwordInputRef.value !== passwordRepitInputRef.value){
               
-                    mensagemErro.textContent = "senha invalida";
+                    mensagemErro.textContent = "senha diferente";
                     formaHasError[target.name] = true
-                    target.classList.add("error")
-                }else{target.classList.remove("error")
-                formaHasError[target.name] = false
+                    formaHasError.password = true
+                    passwordRepitInputRef.classList.add("error")
+                }else{passwordRepitInputRef.classList.remove("error")
+                formaHasError[target.name] = true
                 mensagemErro.textContent = ""}
             }else if(target.name ==='password'){
 
                 if(passwordRepitInputRef.value !== passwordInputRef.value){
               
-                    mensagemErro.textContent = "senha invalida";
-                    formaHasError[target.name] = true
-                    target.classList.add("error")
+                    mensagemErro.textContent = "senha diferente";
+                    formaHasError[target.name] = false
+                    passwordRepitInputRef.classList.add("error")
                 }else{target.classList.remove("error")
-                formaHasError[target.name] = false
+                formaHasError[target.name] = true
                 mensagemErro.textContent = ""} 
 
             }
@@ -93,7 +85,7 @@ function validarInput(event){
           mensagemErro.textContent = "Valor inválido";
         
           // caso seja invalido formaHasError para true a propiedade eque estiver com erro
-          formaHasError[target.name] = true
+          formaHasError[target.name] = false
           target.classList.add("error")
             
         }
@@ -101,29 +93,37 @@ function validarInput(event){
 
         disabledButtonErro()
 
+        console.log(formaHasError)
+
 }  
 
 
 
 //deshabilitar botao
-function disabledButtonErro(){
-  
-
-    if(!formaHasError.name && !formaHasError.lastName && !formaHasError.email && !formaHasError.password && !formaHasError.passwordRepit ){
-    
-        buttonFormRef.disabled = false
-       
-    }else{
-    
-        buttonFormRef.disabled = true
-      
+function disabledButtonErro() {
+    if (
+      !formaHasError.name &&
+      !formaHasError.lastName &&
+      !formaHasError.email &&
+      !formaHasError.password &&
+      !formaHasError.passwordRepit
+    ) {
+      buttonFormRef.disabled = false;
+    } else {
+      buttonFormRef.disabled = true;
     }
-    
-    
-    
-    
-    }
+  }
 
+
+
+         // funçao do botao
+function buttonSent(){
+
+
+    window.location.href ="../pages/tarefas.html"
+
+
+}
 
 
                                   //evento ao clicar no nome
@@ -138,7 +138,13 @@ function disabledButtonErro(){
 
 
                               //evento ao clicar na senha    
-    passwordInputRef.addEventListener("input",(event)=>validarInput(event))
+    passwordInputRef.addEventListener("keyup",(event)=>validarInput(event))
 
                                //evento ao clicar na repetir  senha  
-    passwordRepitInputRef.addEventListener("input",(event)=>validarInput(event))
+    passwordRepitInputRef.addEventListener("keyup",(event)=>validarInput(event))
+
+                                 //evento ao clicar no botao
+buttonFormRef.addEventListener("click",(event)=> {
+   event.preventDefault()
+    buttonSent()
+});
