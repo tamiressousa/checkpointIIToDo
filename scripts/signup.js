@@ -153,3 +153,40 @@ buttonFormRef.addEventListener("click", (event) => {
   event.preventDefault()
   buttonSent()
 });
+
+
+
+const apiBaseUrl = 'https://todo-api.ctd.academy/v1'
+
+buttonFormRef.addEventListener("click", event=>createUser(event))
+
+
+
+
+const user = {
+  firstName: "usuario",
+  lastName: "sobrenome",
+  email: "@email",
+  password: "12345678"
+}
+
+function createUser(event){
+
+
+
+const requestSettings={
+
+  method:'POST'
+
+}
+
+  fetch(`${apiBaseUrl}/users`,requestSettings).then(
+
+      response =>{
+  
+          console.log(response)
+      }
+  
+    )
+  
+}
