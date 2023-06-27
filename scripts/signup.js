@@ -30,11 +30,18 @@ const mensagemErro = document.querySelector(".erro_mensagem");
 
 //coferir se os input estao com erro 
 let formaHasError = {
-  name: true,
+  firstName: true,
   lastName: true,
   email: true,
   password: true,
   passwordRepit: true
+}
+
+const user = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: ""
 }
 
 
@@ -49,6 +56,7 @@ function validarInput(event) {
     //adicionar clase de error
     target.classList.remove("error")
     formaHasError[target.name] = false
+    user[target.name] = target.value
     mensagemErro.textContent = ""
 
 
@@ -73,6 +81,7 @@ function validarInput(event) {
 
         mensagemErro.textContent = "senha diferente";
         formaHasError[target.name] = true
+        user[target.name] = target.value
         passwordRepitInputRef.classList.add("error")
       } else {
         target.classList.remove("error")
@@ -84,9 +93,6 @@ function validarInput(event) {
 
 
   }
-
-
-
   else {
 
     //mensagem de erro no small
@@ -98,10 +104,10 @@ function validarInput(event) {
 
   }
 
-
+  
   disabledButtonErro()
 
-  console.log(formaHasError)
+  
 
 }
 
@@ -110,7 +116,7 @@ function validarInput(event) {
 //deshabilitar botao
 function disabledButtonErro() {
   if (
-    !formaHasError.name &&
+    !formaHasError.firstName &&
     !formaHasError.lastName &&
     !formaHasError.email &&
     !formaHasError.password &&
@@ -125,12 +131,6 @@ function disabledButtonErro() {
 
 
 // funçao do botao
-const user = {
-  firstName: "usuario",
-  lastName: "sobrenome",
-  email: "@emaiee",
-  password: "12345678"
-}
 
 function createUser(event){
 
@@ -158,7 +158,7 @@ const requestSettings={
         if(response.ok){
           
           alert("usuario cadastrado com sucesso")
-          window.location.href = "../pages/tarefas.html"
+          window.location.href = "../index.html"
     
       }else(alert("usuario ja cadastrado"))
   
