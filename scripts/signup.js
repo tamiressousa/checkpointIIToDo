@@ -1,6 +1,5 @@
 const apiBaseUrl = 'https://todo-api.ctd.academy/v1'
 
-const buttonSubmitRef = document.querySelector('#buttonSubmit')
 //seleccionando o input nome
 const nameInputRef = document.querySelector("#nameInput")
 
@@ -19,6 +18,8 @@ const passwordRepitInputRef = document.querySelector("#passwordRepitInput")
 // seleccionando o botao
 const buttonFormRef = document.querySelector("#buttonForm")
 
+const mensagemErro = document.querySelector(".erro_mensagem")
+
 
 
 //coferir se os input estao com erro 
@@ -31,12 +32,51 @@ let formaHasError = {
 }
 
 
-var user = {
-    firstName: "string",
-    lastName: "string",
-    email: "string",
-    password: "string"
+let user = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: ''
 }
+
+//desabilitar botao
+function disabledButtonErro(){
+
+    if(!formaHasError.inputEmail  && !formaHasError.inputPassword){
+   
+        buttonLoginSubmitRef.disabled = true
+   
+    }else{
+
+        buttonLoginSubmitRef.disabled = false
+
+    }
+}
+
+//avaliar input
+function inputValidet(event){
+    const target = event.target
+
+    const isValided = target.checkValidity()
+
+    if(isValided){
+
+        target.classList.remove("error")
+        formaHasError[target.name] = true
+        buttonLoginSubmitRef.classList.remove("errorButton")
+        mensagemErro.innerHTML = ""
+    }else{
+
+        mensagemErro.innerHTML = "error de digitaçao"
+        formaHasError[target.name] = false
+        target.classList.add("error")
+        buttonLoginSubmitRef.classList.add("errorButton")
+
+    }
+
+    disabledButtonErro()
+}
+
 
 function createUser(event) {
 
@@ -57,7 +97,14 @@ function createUser(event) {
         response => {
             console.log(response)
             if (response.ok) {
-                console.log('usuario cadastrado com sucesso')
+                response.json().then(
+                    response => 
+                    {
+                        console.log('usuario cadastrado com sucesso')
+                        window.location.href = 'index.html'
+                    }
+                )
+                
             } else {
                 alert('esse e-mail ja foi cadastrado')
             }
@@ -68,24 +115,27 @@ function createUser(event) {
 
 buttonSubmitRef.addEventListener('click', event => createUser(event))
 
+emailInputRef.addEventListener('keyup', event => {
+    console.log(event.target.checkValidity())
+})
 
-
-//deshabilitar botao
+//desabilitar botao
 function disabledButtonErro() {
-
 
     if (!formaHasError.name && !formaHasError.lastName && !formaHasError.email && !formaHasError.password && !formaHasError.passwordRepit) {
 
-        botonForm.disabled = false
+        buttonFormRef.disabled = true
 
     } else {
 
-        botonForm.disabled = true
+        buttonFormRef.disabled = false
 
     }
 
-
-
-
 }
+
+
+
+
+
 
