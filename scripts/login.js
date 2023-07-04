@@ -23,15 +23,15 @@ let user = {
 //coferir se os input estao com erro 
 let formaHasError ={
 
-   inputEmail: true,
-   inputPassword: true
+   email: true,
+   password: true
 
 }
 
 //desabilitar botao
 function disabledButtonErro(){
 
-    if(!formaHasError.inputEmail  && !formaHasError.inputPassword){
+    if(!formaHasError.email  && !formaHasError.password){
    
         buttonLoginSubmitRef.disabled = true
    
@@ -48,7 +48,7 @@ function inputValidet(event){
     const target = event.target
 
     const isValided = target.checkValidity()
-
+    user[target.name] = target.value
     if(isValided){
 
         target.classList.remove("error")
@@ -101,7 +101,7 @@ function authUser(event) {
                 response.json().then(
                     token => {                                                  // token ==> é a varíavel que armazenará meu token (jwt).
                         localStorage.setItem('jwt', token.jwt)
-                        window.location.href = 'tarefas.html'
+                        window.location.href = '/pages/tarefas.html'
                     }
                 )
             } else {
@@ -118,11 +118,7 @@ inputEmailRef.addEventListener("keyup",(event)=>inputValidet(event))
 
 inputPasswordRef.addEventListener("keyup",(event)=>inputValidet(event))
 
-buttonLoginSubmitRef.addEventListener("click", function(event) {
-    event.preventDefault();
-    sentButton();
 
-});
 
 
 
